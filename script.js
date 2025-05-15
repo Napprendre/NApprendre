@@ -8,5 +8,5 @@ document.getElementById("inscription-form").addEventListener("submit", function(
 
   alert(`Merci ${prenom} ${nom} !\nInscription reçue.`);
 
-  // Tu peux ensuite envoyer les données vers un serveur ou les enregistrer localement.
+  
 });
