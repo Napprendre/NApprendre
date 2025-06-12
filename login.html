@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion - NApprendre</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; max-width: 400px; margin: auto; }
+    label, input { display: block; margin-top: 10px; }
+    button { margin-top: 20px; padding: 10px; }
+    #message { color: red; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+  <h1>Connexion</h1>
+  <form id="loginForm">
+    <label>Email :
+      <input type="email" id="email" required />
+    </label>
+    <button type="submit">Se connecter</button>
+
+    <button href="inscription.html">Créer un compte</button>
+    
+  </form>
+
+  <p id="message"></p>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    // 🔁 À remplacer avec tes vraies infos Supabase
+    const supabaseUrl = "https://pbckqyhqvkggzlkqcznx.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+
+      const { data, error } = await supabase
+        .from("utilisateurs") // nom exact de ta table
+        .select("*")
+        .eq("email", email)
+        .single();
+
+      if (error || !data) {
+        console.error("Email non trouvé :", error);
+        message.textContent = "Adresse email inconnue.";
+      } else {
+        // Redirection si email trouvé
+        window.location.href = "main.html";
+      }
+    });
+  </script>
+
+</body>
+</html>
