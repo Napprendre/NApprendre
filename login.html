@@ -13,9 +13,10 @@
     <label>Email :
       <input type="email" id="email" required />
     </label>
-    <button type="submit">Se connecter</button>
+    <br>
+    <button type="submit" class="btn">Se connecter</button>
    </form>
-
+  <br>
   <a href="iscription.html" class="btn" >Créer un compte</a>
 
   <p id="message"></p>
@@ -23,7 +24,6 @@
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    // 🔁 À remplacer avec tes vraies infos Supabase
     const supabaseUrl = "https://pbckqyhqvkggzlkqcznx.supabase.co";
     const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04";
     const supabase = createClient(supabaseUrl, supabaseKey);
