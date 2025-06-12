@@ -3,76 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NApprendre© - Logiciel Éducatif - inscription</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>NApprendre© - Inscription</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    label, input { display: block; margin: 10px 0; }
+    button { padding: 8px 16px; }
+    #message { margin-top: 20px; color: green; }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>Inscrivez-vous</h1>
-    <p>Pour recevoir le logiciel et les nouvelles versions.</p>
-  </header>
+  <h1>Inscription à NApprendre</h1>
 
-  <main>
-    <section>
-      <h2>Formulaire</h2>
-      <form id="signupForm">
-        <label for="nom">Nom :</label><br />
-        <input type="text" id="nom" name="nom" required /><br /><br />
+  <form id="signup-form">
+    <label>Nom :
+      <input type="text" id="nom" name="nom" required />
+    </label>
+    <label>Prénom :
+      <input type="text" id="prenom" name="prenom" required />
+    </label>
+    <label>Email :
+      <input type="email" id="email" name="email" required />
+    </label>
+    <button type="submit">Envoyer</button>
+  </form>
 
-        <label for="prenom">Prénom :</label><br />
-        <input type="text" id="prenom" name="prenom" required /><br /><br />
-
-        <label for="email">Email :</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
-
-        <button type="submit">S'inscrire</button>
-      </form>
-
-      <p id="message"></p>
-    </section>
-
-    <section>
-      <p>en vous inscrivant, vous acceptez : <a href="PC">La politique de confidentialité</a>
-        et <a href="CGU">les conditions générales d'utilisation</a>.</p>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Nathan PORRET - Tous droits réservés
-  </footer>
+  <p id="message"></p>
 
   <script type="module">
+    // ✅ SDK Supabase officiel en ES modules
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    const supabaseUrl = 'https://pbckqyhqvkggzlkqcznx.supabase.co'; // Remplace par ton URL Supabase
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04'; // Remplace par ta clé API anon
+    // 🔁 À remplacer par TES infos Supabase
+    const supabaseUrl = "https://pbckqyhqvkggzlkqcznx.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04";
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const form = document.getElementById('signupForm');
-    const message = document.getElementById('message');
+    const form = document.getElementById("signup-form");
+    const message = document.getElementById("message");
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      const nom = form.nom.value.trim();
-      const prenom = form.prenom.value.trim();
-      const email = form.email.value.trim();
-
-      if (!nom || !prenom || !email) {
-        message.textContent = "Merci de remplir tous les champs.";
-        return;
-      }
+      const nom = document.getElementById("nom").value;
+      const prenom = document.getElementById("prenom").value;
+      const email = document.getElementById("email").value;
 
       const { data, error } = await supabase
-        .from('utilisateurs') // Remplace par ta table
+        .from("utilisateurs") // 📛 Le nom EXACT de ta table
         .insert([{ nom, prenom, email }]);
 
       if (error) {
-        console.error(error);
-        message.textContent = "Une erreur est survenue. Veuillez réessayer.";
+        console.error("Erreur :", error);
+        message.textContent = "Une erreur est survenue. Vérifie la console.";
+        message.style.color = "red";
       } else {
-        message.textContent = "Inscription réussie, merci !";
+        message.textContent = "Inscription réussie ! Merci.";
+        message.style.color = "green";
         form.reset();
       }
     });
@@ -80,3 +67,4 @@
 
 </body>
 </html>
+
