@@ -16,18 +16,67 @@
   <main>
     <section>
       <h2>Formulaire</h2>
-      <p>Remplissez ce <a href=https://docs.google.com/forms/d/e/1FAIpQLSfX_4mAn5Kw8NirtC3M7uLAoebNaZOlfjFT-j4oHPgUAVhmiQ/viewform?usp=header>formulaire</a>
-        pour recevoir les versions du logiciel NApprendre.</p>
+      <form id="signupForm">
+        <label for="nom">Nom :</label><br />
+        <input type="text" id="nom" name="nom" required /><br /><br />
+
+        <label for="prenom">Prénom :</label><br />
+        <input type="text" id="prenom" name="prenom" required /><br /><br />
+
+        <label for="email">Email :</label><br />
+        <input type="email" id="email" name="email" required /><br /><br />
+
+        <button type="submit">S'inscrire</button>
+      </form>
+
+      <p id="message"></p>
     </section>
+
     <section>
-      <p>en vous inscrivant, vous acceptez : <a href=PC>La politique de confidentialité</a>
-        et <a href=CGU>les conditions générales d'utilisation</a>.</p>
+      <p>en vous inscrivant, vous acceptez : <a href="PC">La politique de confidentialité</a>
+        et <a href="CGU">les conditions générales d'utilisation</a>.</p>
     </section>
   </main>
 
   <footer>
     &copy; 2025 Nathan PORRET - Tous droits réservés
   </footer>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabaseUrl = 'https://pbckqyhqvkggzlkqcznx.supabase.co'; // Remplace par ton URL Supabase
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04'; // Remplace par ta clé API anon
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById('signupForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const nom = form.nom.value.trim();
+      const prenom = form.prenom.value.trim();
+      const email = form.email.value.trim();
+
+      if (!nom || !prenom || !email) {
+        message.textContent = "Merci de remplir tous les champs.";
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('utilisateurs') // Remplace par ta table
+        .insert([{ nom, prenom, email }]);
+
+      if (error) {
+        console.error(error);
+        message.textContent = "Une erreur est survenue. Veuillez réessayer.";
+      } else {
+        message.textContent = "Inscription réussie, merci !";
+        form.reset();
+      }
+    });
+  </script>
 
 </body>
 </html>
