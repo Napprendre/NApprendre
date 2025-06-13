@@ -4,6 +4,10 @@ body {
       color: #333;
       margin: 0;
       padding: 0;
+      
+      display: flex;
+      justify-content: center;  /* centre horizontalement */
+      align-items: center;      /* centre verticalement */
     }
     header {
       background-color: #0055a5;
