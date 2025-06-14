@@ -1,115 +1,100 @@
+/* ----- Configuration de base ----- */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #e8f5e9; /* vert très clair */
-  color: #333;
+  color: #2e7d32; /* vert foncé */
   margin: 0;
   padding: 0;
-
-  display: flex;
-  flex-direction: column;     /* disposition verticale */
-  min-height: 100vh;          /* occupe toute la hauteur */
-}
-
-main {
-  flex: 1;                    /* prend tout l’espace disponible entre header et footer */
   display: flex;
   flex-direction: column;
-  justify-content: left;    /* centre verticalement le contenu dans <main> */
-  align-items: center;        /* centre horizontalement */
+  min-height: 100vh;
 }
-    }
-    header {
-        background-color: #2e7d32; /* vert foncé */
-        color: white;
-        padding: 2rem 1rem;
-        text-align: center;
-      }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      text-align:center;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    h2 {
-  position: relative;
-  color: #2e7d32;
-  border-bottom: 2px solid #2e7d32;
+/* ----- En-tête ----- */
+header {
+  background-color: #2e7d32;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* ----- Contenu principal ----- */
+main {
+  flex: 1;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ----- Titres ----- */
+h2 {
+  color: #388e3c;
+  border-bottom: 2px solid #388e3c;
   padding-bottom: 0.25rem;
-  transition: color 0.3s ease;
 }
 
-h2:hover {
-  color: #1b5e20;
+/* ----- Listes ----- */
+ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
 }
-    ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-    }
-    .btn {
-        display: inline-block;
-        background-color: #43a047; /* vert moyen */
-        color: white;
-        text-decoration: none;
-        padding: 0.75rem 1.5rem;
-        margin: 1.5rem;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        text-align: center;
-      }
-      
-      .btn:hover {
-        background-color: #2e7d32; /* vert foncé au survol */
-      }
 
-    button {
-        display: inline-block;
-        background-color: #43a047;
-        color: white;
-        text-decoration: none;
-        padding: 0.75rem 1.5rem;
-        margin: 1.5rem;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        text-align: center; 
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      
-      button:hover {
-        background-color: #2e7d32;
-      }
-    footer {
-      background-color: #e1e7ef;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 3rem;
-    }
-      form {
-  padding: 20px;
-  max-width: 400px;
-  margin: 0 auto;
+/* ----- Boutons & liens stylisés ----- */
+.btn, button {
+  display: inline-block;
+  background-color: #43a047;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  margin: 1rem auto;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:hover, button:hover {
+  background-color: #2e7d32;
+  transform: scale(1.03);
+}
+
+/* ----- Formulaires ----- */
+form {
+  padding: 2rem;
+  background-color: #ffffff;
   border: 1px solid #c8e6c9;
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 100, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 100, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
 }
 
-input[type="email"] {
+input[type="email"],
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 0.75rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem 0;
   border: 1px solid #a5d6a7;
   border-radius: 5px;
   font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* ----- Pied de page ----- */
+footer {
+  background-color: #c8e6c9;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #2e7d32;
 }
