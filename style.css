@@ -1,12 +1,22 @@
 body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f9fc;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      
-      display: flex;
-      align-items: center;      /* centre verticalement */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e8f5e9; /* vert très clair */
+  color: #333;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;     /* disposition verticale */
+  min-height: 100vh;          /* occupe toute la hauteur */
+}
+
+main {
+  flex: 1;                    /* prend tout l’espace disponible entre header et footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* centre verticalement le contenu dans <main> */
+  align-items: center;        /* centre horizontalement */
+}
     }
     header {
         background-color: #2e7d32; /* vert foncé */
