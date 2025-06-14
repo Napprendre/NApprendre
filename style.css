@@ -14,7 +14,7 @@ main {
   flex: 1;                    /* prend tout l’espace disponible entre header et footer */
   display: flex;
   flex-direction: column;
-  justify-content: center;    /* centre verticalement le contenu dans <main> */
+  justify-content: left;    /* centre verticalement le contenu dans <main> */
   align-items: center;        /* centre horizontalement */
 }
     }
