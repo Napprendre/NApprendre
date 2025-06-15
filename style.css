@@ -73,7 +73,8 @@ ul {
 .navig{
   text-align: left;
   mrgin: 1rem;
-}ß
+  color: white;
+}
 
 .btn:hover, button:hover {
   background-color: #2e7d32;
@@ -112,7 +113,3 @@ footer {
   color: #2e7d32;
 }
 
-.navig{
-  text-align: left;
-  color: white;
-}
