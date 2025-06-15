@@ -112,6 +112,10 @@ footer {
   color: #2e7d32;
 }
 
-.navigation{
-  
+.navig{
+  text-align: left;
+}
+
+img{
+  width: 100%;
 }
