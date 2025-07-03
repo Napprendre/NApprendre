@@ -50,7 +50,9 @@
 
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        alert('Connecté : ' + userCredential.user.email);
+      window.location.href = 'main.html';  // page après connexion
+  }
+});
       })
       .catch((error) => {
         alert('Erreur : ' + error.message);
@@ -64,7 +66,7 @@
 
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        alert('Inscrit : ' + userCredential.user.email);
+        window.location.href = 'main.html';
       })
       .catch((error) => {
         alert('Erreur : ' + error.message);
