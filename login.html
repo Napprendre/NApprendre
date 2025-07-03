@@ -12,48 +12,65 @@
     <h1>Connexion</h1>
     <a href="index.html" class="navig" >acceuil</a>
   </header>
-  <form id="loginForm">
-    <label>Email :
-      <input type="email" id="email" required />
-    </label>
-    <br>
-    <button type="submit">Se connecter</button>
-   </form>
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Mot de passe" />
+  <button onclick="login()">Connexion</button>
+  <button onclick="signup()">Inscription</button>
   <br>
   <a href="inscription.html" class="btn" >Créer un compte</a>
 
   <p id="message"></p>
 
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  <!-- Firebase App (SDK Core) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-    const supabaseUrl = "https://pbckqyhqvkggzlkqcznx.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+<!-- Firebase Auth SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-    const form = document.getElementById("loginForm");
-    const message = document.getElementById("message");
+<script>
+  // Config Firebase (remplace avec ta config trouvée dans la console Firebase)
+  const firebaseConfig = {
+    apiKey: "API_KEY",
+    authDomain: "ton-projet.firebaseapp.com",
+    projectId: "ton-projet",
+    // ...
+  };
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  // Initialise Firebase
+  firebase.initializeApp(firebaseConfig);
 
-      const email = document.getElementById("email").value.trim();
+  // Récupère l’instance Auth
+  const auth = firebase.auth();
 
-      const { data, error } = await supabase
-        .from("utilisateurs") // nom exact de ta table
-        .select("*")
-        .eq("email", email)
-        .single();
+  // Fonction de connexion avec email et mot de passe
+  function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-      if (error || !data) {
-        console.error("Email non trouvé :", error);
-        message.textContent = "Adresse email inconnue.";
-      } else {
-        // Redirection si email trouvé
-        window.location.href = "main.html";
-      }
-    });
-  </script>
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        alert('Connecté : ' + userCredential.user.email);
+      })
+      .catch((error) => {
+        alert('Erreur : ' + error.message);
+      });
+  }
+
+  // Fonction d’inscription
+  function signup() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        alert('Inscrit : ' + userCredential.user.email);
+      })
+      .catch((error) => {
+        alert('Erreur : ' + error.message);
+      });
+  }
+
+</script>
 
 </body>
 </html>
