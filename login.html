@@ -45,19 +45,18 @@
 
   // Fonction de connexion avec email et mot de passe
   function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
       window.location.href = 'main.html';  // page après connexion
-  }
-});
-      })
-      .catch((error) => {
-        alert('Erreur : ' + error.message);
-      });
-  }
+    })
+    .catch((error) => {
+      alert('Erreur : ' + error.message);
+    });
+}
+
 
   // Fonction d’inscription
   function signup() {
