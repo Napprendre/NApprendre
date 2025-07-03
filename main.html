@@ -7,31 +7,58 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Bienvenu</h1>
-    <a href="index.html" class="navig" >acceuil</a>
-  </header>
-  <section>
-    <p>Vous êtes connecté.</p>
-  </section>
-
-  <section>
-    <a href="NApprendre.pkg" class="btn">Télécharger NApprendre (.pkg)</a>
-    <ul>
-      <li>Version : 2.5</li>
-      <li>Taille : 21,2 Mo</li>
-      <li>Compatible MacOS</li>
-      <li>Ce fichier permet l'instalation du logiciel</li>
-    </ul>
-    <p>Lors de l'instalation, le logiciel ne disposant pas de license Apple peut ne pas s'ouvrir.<br>
-    Allez dans Réglages système -> confidentialité et sécurité,<br> en bas, vous trouverez le fichier. Cliquez sur ouvrir quand même</p>
-  </section>
+  <div id="content">
+    <header>
+      <h1>Bienvenu</h1>
+      <a href="index.html" class="navig" >acceuil</a>
+    </header>
+    <section>
+      <p>Vous êtes connecté.</p>
+    </section>
   
-  <footer>
-    <p>En étant connecté et inscrit, vous acceptez recevoir des emails lors des nouvelles versions,<br>
-    <a href="CGU.pdf">les conditions générales d'utilisation</a>, ainsi que <a href="PC.pdf">la politique de confidentialité</a></p>
-  </footer>
+    <section>
+      <a href="NApprendre.pkg" class="btn">Télécharger NApprendre (.pkg)</a>
+      <ul>
+        <li>Version : 2.5</li>
+        <li>Taille : 21,2 Mo</li>
+        <li>Compatible MacOS</li>
+        <li>Ce fichier permet l'instalation du logiciel</li>
+      </ul>
+      <p>Lors de l'instalation, le logiciel ne disposant pas de license Apple peut ne pas s'ouvrir.<br>
+      Allez dans Réglages système -> confidentialité et sécurité,<br> en bas, vous trouverez le fichier. Cliquez sur ouvrir quand même</p>
+    </section>
+    
+    <footer>
+      <p>En étant connecté et inscrit, vous acceptez recevoir des emails lors des nouvelles versions,<br>
+      <a href="CGU.pdf">les conditions générales d'utilisation</a>, ainsi que <a href="PC.pdf">la politique de confidentialité</a></p>
+    </footer>
 
+    </div>
+  <script>
+  // Ta config Firebase (remplace par ta config)
+  const firebaseConfig = {
+    apiKey: "TA_CLE_API_ICI",
+    authDomain: "ton-projet.firebaseapp.com",
+    projectId: "ton-projet",
+    storageBucket: "ton-projet.appspot.com",
+    messagingSenderId: "xxxxxxxxxxxxx",
+    appId: "1:xxxxxxxxxx:web:xxxxxxxxxxxxxx"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Vérifie l'état de connexion
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      // Utilisateur connecté : affiche le contenu
+      document.getElementById('content').style.display = 'block';
+    } else {
+      // Pas connecté : redirige vers login.html
+      window.location.href = 'login.html';
+    }
+  });
+</script>
   
 
 </body>
