@@ -1,68 +1,64 @@
- ne<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NApprendre© - Inscription</title>
+  <title>Connexion - NApprendre</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  
   <header>
-    <h1>Inscription à NApprendre</h1>
+    <h1>Connexion</h1>
     <a href="index.html" class="navig" >acceuil</a>
   </header>
-
-  <form id="signup-form">
-    <label>Nom :
-      <input type="text" id="nom" name="nom" required />
-    </label>
-    <label>Prénom :
-      <input type="text" id="prenom" name="prenom" required />
-    </label>
-    <label>Email :
-      <input type="email" id="email" name="email" required />
-    </label>
-    <button type="submit" class="btn">Envoyer</button>
-  </form>
-
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Mot de passe" />
+  <button onclick="signup()" class="btn">Inscription</button>
+  <a href="login.html">connexion</a>
+  <br>
   <p id="message"></p>
 
-  <script type="module">
-    // ✅ SDK Supabase officiel en ES modules
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  <!-- Firebase App (SDK Core) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-    // 🔁 À remplacer par TES infos Supabase
-    const supabaseUrl = "https://pbckqyhqvkggzlkqcznx.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiY2txeWhxdmtnZ3psa3Fjem54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk3Mzk0MjMsImV4cCI6MjA2NTMxNTQyM30.MXGYayE9H1V8588o441LEc2pHp4iY3uAlmD5A4qDi04";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+<!-- Firebase Auth SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-    const form = document.getElementById("signup-form");
-    const message = document.getElementById("message");
+<script>
+  // Config Firebase (remplace avec ta config trouvée dans la console Firebase)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIAzM3BwSGMXXuHZT6vm4eXq0E3lZRtHY",
+    authDomain: "napprendre-7fa13.firebaseapp.com",
+    databaseURL: "https://napprendre-7fa13-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "napprendre-7fa13",
+    storageBucket: "napprendre-7fa13.firebasestorage.app",
+    messagingSenderId: "702476923434",
+    appId: "1:702476923434:web:015d15f48354dab3eb0953"
+  };
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  // Initialise Firebase
+  firebase.initializeApp(firebaseConfig);
 
-      const nom = document.getElementById("nom").value;
-      const prenom = document.getElementById("prenom").value;
-      const email = document.getElementById("email").value;
+  // Récupère l’instance Auth
+  const auth = firebase.auth();
 
-      const { data, error } = await supabase
-        .from("utilisateurs") // 📛 Le nom EXACT de ta table
-        .insert([{ nom, prenom, email }]);
 
-      if (error) {
-        console.error("Erreur :", error);
-        message.textContent = "Une erreur est survenue. Ce nom existe déjà ou contactez nous.";
-        message.style.color = "red";
-      } else {
-        message.textContent = "Inscription réussie ! Merci.";
-        message.style.color = "green";
-        form.reset();
-      }
-    });
-  </script>
+  // Fonction d’inscription
+  function signup() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        window.location.href = 'main.html';
+      })
+      .catch((error) => {
+        alert('Erreur : ' + error.message);
+      });
+  }
+
+</script>
 
 </body>
 </html>
-
