@@ -9,9 +9,11 @@
 <body>
   
   <header>
-    <h1>Connexion</h1>
+    <h1>Inscription</h1>
     <a href="index.html" class="navig" >acceuil</a>
   </header>
+  <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+  <input type="text" id="nom" name="nom" placeholder="Nom">
   <input type="email" id="email" placeholder="Email" />
   <input type="password" id="password" placeholder="Mot de passe" />
   <button onclick="signup()" class="btn">Inscription</button>
@@ -48,6 +50,8 @@
   function signup() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
 
     auth.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -56,6 +60,7 @@
       .catch((error) => {
         alert('Erreur : ' + error.message);
       });
+    user.updateProfile({ displayName: prenom + " " + nom });
   }
 
 </script>
