@@ -48,20 +48,28 @@
 
   // Fonction d’inscription
   function signup() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const nom = document.getElementById('nom').value;
-    const prenom = document.getElementById('prenom').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const nom = document.getElementById('nom').value;
+  const prenom = document.getElementById('prenom').value;
 
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        window.location.href = 'main.html';
-      })
-      .catch((error) => {
-        alert('Erreur : ' + error.message);
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      // Met à jour le displayName
+      return user.updateProfile({
+        displayName: prenom + " " + nom
       });
-    user.updateProfile({ displayName: prenom + " " + nom });
-  }
+    })
+    .then(() => {
+      // Redirection une fois que le nom est bien enregistré
+      window.location.href = 'main.html';
+    })
+    .catch((error) => {
+      alert('Erreur : ' + error.message);
+    });
+}
 
 </script>
 
