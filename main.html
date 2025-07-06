@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="content">
+  <div id="content" style="display:none;">
     <header>
-      <h1>Bienvenu</h1>
+      <h1><div id="welcome">Bonjour !</div></h1>
       <a href="index.html" class="navig" >acceuil</a>
     </header>
     <section>
@@ -60,6 +60,7 @@
     if (user) {
       // Utilisateur connecté : affiche le contenu
       document.getElementById('content').style.display = 'block';
+      document.getElementById('welcome').textContent = `Bonjour ${user.displayName} !`;
     } else {
       // Pas connecté : redirige vers login.html
       window.location.href = 'login.html';
