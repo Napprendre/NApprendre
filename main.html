@@ -41,32 +41,32 @@
 
     </div>
   <script>
-  // Ta config Firebase (remplace par ta config)
-  const firebaseConfig = {
-    apiKey: "AIzaSyCIAzM3BwSGMXXuHZT6vm4eXq0E3lZRtHY",
-    authDomain: "napprendre-7fa13.firebaseapp.com",
-    databaseURL: "https://napprendre-7fa13-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "napprendre-7fa13",
-    storageBucket: "napprendre-7fa13.firebasestorage.app",
-    messagingSenderId: "702476923434",
-    appId: "1:702476923434:web:015d15f48354dab3eb0953"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  // Vérifie l'état de connexion
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      // Utilisateur connecté : affiche le contenu
-      document.getElementById('content').style.display = 'block';
-      document.getElementById('welcome').textContent = `Bonjour ${user.displayName} !`;
-    } else {
-      // Pas connecté : redirige vers login.html
-      window.location.href = 'login.html';
-    }
-  });
-</script>
+    // Ta config Firebase (remplace par ta config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCIAzM3BwSGMXXuHZT6vm4eXq0E3lZRtHY",
+      authDomain: "napprendre-7fa13.firebaseapp.com",
+      databaseURL: "https://napprendre-7fa13-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "napprendre-7fa13",
+      storageBucket: "napprendre-7fa13.firebasestorage.app",
+      messagingSenderId: "702476923434",
+      appId: "1:702476923434:web:015d15f48354dab3eb0953"
+    };
+  
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  
+    // Vérifie l'état de connexion
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        // Utilisateur connecté : affiche le contenu
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('welcome').textContent = `Bonjour ${user.displayName} !`;
+      } else {
+        // Pas connecté : redirige vers login.html
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
   
 
 </body>
