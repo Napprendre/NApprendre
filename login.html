@@ -46,8 +46,7 @@
   auth.onAuthStateChanged(user => {
         if (user) {
           // Utilisateur connecté : affiche le contenu
-          document.getElementById('content').style.display = 'block';
-          document.getElementById('welcome').textContent = `Bonjour ${user.displayName} !`;
+          window.location.href = 'main.html';
         } else {
           // Pas connecté : redirige vers login.html
           window.location.href = 'login.html';
