@@ -43,6 +43,17 @@
   // Récupère l’instance Auth
   const auth = firebase.auth();
 
+  auth.onAuthStateChanged(user => {
+        if (user) {
+          // Utilisateur connecté : affiche le contenu
+          document.getElementById('content').style.display = 'block';
+          document.getElementById('welcome').textContent = `Bonjour ${user.displayName} !`;
+        } else {
+          // Pas connecté : redirige vers login.html
+          window.location.href = 'login.html';
+        }
+      });
+
   // Fonction de connexion avec email et mot de passe
   function login() {
   const email = document.getElementById('email').value;
