@@ -6,7 +6,7 @@
   <title>Connexion - NApprendre</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body onload="check()">
   
   <header>
     <h1>Connexion</h1>
@@ -43,6 +43,7 @@
   // Récupère l’instance Auth
   const auth = firebase.auth();
 
+  function check(){
   auth.onAuthStateChanged(user => {
         if (user) {
           // Utilisateur connecté : affiche le contenu
@@ -51,7 +52,7 @@
           // Pas connecté : redirige vers login.html
           window.location.href = 'login.html';
         }
-      });
+      })};
 
   // Fonction de connexion avec email et mot de passe
   function login() {
